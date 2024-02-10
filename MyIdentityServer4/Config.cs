@@ -4,13 +4,22 @@ namespace IdentityServer4;
 
 public class Config
 {
+    public static IEnumerable<ApiScope> GetAPIScopes()
+    {
+            return new List<ApiScope> 
+            { 
+                new ApiScope("api.read", "Friendly scope name") ,
+                new ApiScope("api.write", "Friendly scope name") 
+            };
+    }
+    
     public static IEnumerable<ApiResource> GetApiResources()
     {
         return new List<ApiResource>()
         {
             new ApiResource("myapi","My API")
             {
-                 Scopes = new List<string>(){"myapi.read","myapi.write"},
+                 Scopes = new List<string>(){"api.read","api.write"},
             }
         };
     }
@@ -29,7 +38,7 @@ public class Config
                 },
                 AllowedScopes =
                 {
-                    "myapi.read","myapi.write"
+                    "api.read","api.write"
                 }
             }
         };
