@@ -11,7 +11,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddIdentityServer().AddDeveloperSigningCredential()
     .AddOperationalStore(options =>
     {
-        
+          
     })
 var app = builder.Build();
 
