@@ -14,6 +14,19 @@ builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(o =>
+{
+    o.Authority = "https://localhost:7208";
+    o.Audience = "myapi";
+    o.RequireHttpsMetadata = false;
+});
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("PublicClientSecured", policy =>
+    {
+        policy.RequireClaim("client_id", "web_api_client_id");
+    });
 });
 
 var app = builder.Build();
@@ -27,6 +40,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

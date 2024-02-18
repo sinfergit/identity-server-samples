@@ -17,8 +17,8 @@ builder.Services.AddIdentityServer().AddDeveloperSigningCredential()
         options.TokenCleanupInterval = 60;
     })
     .AddInMemoryClients(Config.GetClients())
-    .AddInMemoryApiScopes(Config.GetAPIScopes());
-    //.AddInMemoryApiResources(Config.GetApiResources());
+    .AddInMemoryApiScopes(Config.GetAPIScopes())
+    .AddInMemoryApiResources(Config.GetApiResources());
 
 var app = builder.Build();
 

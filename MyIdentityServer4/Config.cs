@@ -39,7 +39,7 @@ public class Config
                 AllowedScopes =
                 {
                     "api.read","api.write"
-                }
+                },
             }
         };
     }
